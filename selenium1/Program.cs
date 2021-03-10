@@ -215,7 +215,7 @@ namespace selenium1
         }
         public static String GetConnection()
         {
-            String ConnectionString = "server=192.168.1.24,1720;uid=sat;pwd=Admin@123;database=GenDataSatcapIndia;Timeout=3000;";
+            String ConnectionString = "server=192.168.1.24,1433;uid=sa;pwd=Satcap@2020;database=GenDataSatcapIndia;Timeout=3000;";
 
             ; return ConnectionString;
 
@@ -376,7 +376,7 @@ namespace selenium1
              
             try
             {
-                if (DateTime.Now.DayOfWeek.ToString()=="Monday" && DateTime.Now.Hour == 10 && DateTime.Now.Minute==33)
+                if (DateTime.Now.DayOfWeek.ToString()=="Monday" && DateTime.Now.Hour == 14 && DateTime.Now.Minute==55)
                 {
                     SendDueMessage();
                 }
@@ -390,9 +390,11 @@ namespace selenium1
 
                 DataSet dsGetUsers = GetDataSet("update whatsappmsgsend set IsWhatsAppMsg=0 where Sendid>(select max(msgid) from msglog )");
                 Console.WriteLine("-------------updated----------");
-
-                DataSet dsGetUser = GetDataSet("select * from whatsappmsgsend where IsWhatsAppMsg=0");
-
+                string query = "select Query from querytable where queryfor = 'WhatsappMessageInvoicesandorder'";
+                DataSet dsGetUser = GetDataSet(query);
+                query = dsGetUser.Tables[0].Rows[0][0].ToString();
+                dsGetUser = GetDataSet(query);
+              
                 if (dsGetUser.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dr in dsGetUser.Tables[0].Rows)
