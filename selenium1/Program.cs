@@ -147,15 +147,9 @@ namespace selenium1
         }
         public static String GetConnection()
         {
-            //String ConnectionString =
-            //"server=SOFTWARE-DEVELO\\SQLEXPRESS;" +
-            //"uid=sat;" +
-            //"pwd=Satcap@2020;" +
-            //"database=GenDataSatcapIndia;Timeout=3000;";
-            ////
+         
             String ConnectionString = "server=192.168.0.254,1433;" +
-            "uid=sa;" +
-            "pwd=Satcap@2020;" +
+            
             "database=GenDataSatcapIndia;Timeout=3000;";
 
             return ConnectionString;
